@@ -59,14 +59,20 @@ export default function DashboardPage() {
 
   return (
     <MainLayout title="Ongoing Shift Dashboard">
-      <div className="dashboard-header-actions">
-        <button 
-          className="btn-primary" 
-          disabled={!activeShift} 
-          onClick={() => setIsTrxModalOpen(true)}
-        >
-          + New Transaction
-        </button>
+      <div className="dashboard-header-section">
+        <div className="welcome-text">
+          <h1>Welcome back, {userProfile?.email?.split('@')[0]}</h1>
+          <p>Here's what's happening at your outlet today.</p>
+        </div>
+        <div className="dashboard-header-actions">
+          <button 
+            className="btn btn-primary" 
+            disabled={!activeShift} 
+            onClick={() => setIsTrxModalOpen(true)}
+          >
+            + New Transaction
+          </button>
+        </div>
       </div>
 
       <div className="dashboard-grid">

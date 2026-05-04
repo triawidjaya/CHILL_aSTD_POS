@@ -1,45 +1,76 @@
 .balance-widget {
-  grid-column: 1 / -1;
+  width: 100%;
 }
 
 .balance-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.5rem;
 }
 
 .balance-item {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1rem;
-  background: rgba(99, 102, 241, 0.05);
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.balance-item.total {
-  background: rgba(16, 185, 129, 0.05);
-  border-color: rgba(16, 185, 129, 0.2);
+.balance-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-premium);
 }
+
+.balance-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--border-subtle);
+}
+
+.balance-item.total::before { background: var(--grad-primary); }
+.balance-item.income::before { background: #10b981; }
+.balance-item.expense::before { background: #ef4444; }
 
 .balance-label {
   font-size: 0.75rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  font-weight: 800;
+  letter-spacing: 0.1em;
 }
 
 .balance-amount {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.03em;
 }
 
 .balance-amount.positive {
-  color: var(--success);
+  color: #059669;
 }
 
 .balance-amount.negative {
-  color: var(--danger);
+  color: #dc2626;
+}
+
+/* Add a subtle icon background */
+.balance-item::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  font-size: 4rem;
+  opacity: 0.03;
+  font-weight: 900;
 }
