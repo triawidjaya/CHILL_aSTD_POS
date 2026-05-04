@@ -12,7 +12,7 @@ import { useTransactions, useShiftBalance } from '../hooks/useTransactions';
 import '../styles/dashboard.css';
 
 export default function DashboardPage() {
-  const { userProfile } = useAuth();
+  const { userProfile, profileError, loading } = useAuth();
   const { outletId } = useOutlet();
   const { activeShift, openShift, closeCurrentShift, loading: shiftLoading } = useShifts(outletId);
   const { transactions, loading: txnLoading } = useTransactions(outletId, activeShift?.id);
@@ -20,8 +20,22 @@ export default function DashboardPage() {
   
   const [isTrxModalOpen, setIsTrxModalOpen] = useState(false);
 
-  if (!userProfile) {
-    return <MainLayout><div>Loading profile...</div></MainLayout>;
+  if (loading) {
+    return <MainLayout><div>Synchronizing session...</div></MainLayout>;
+  }
+
+  if (profileError || !userProfile) {
+    return (
+      <MainLayout>
+        <div className="error-container" style={{ padding: '2rem', textAlign: 'center' }}>
+          <h2>Profile Sync Error</h2>
+          <p>We couldn't load your user profile. {profileError || 'Please try logging in again.'}</p>
+          <button className="btn-primary" onClick={() => window.location.reload()} style={{ marginTop: '1rem' }}>
+            Retry Sync
+          </button>
+        </div>
+      </MainLayout>
+    );
   }
 
   const handleOpenShift = async (amount) => {

@@ -9,6 +9,7 @@ export function AuthProvider({ children }) {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userProfile, setUserProfile] = useState(null);
+  const [profileError, setProfileError] = useState(null);
 
   useEffect(() => {
     // Check for existing session
@@ -38,6 +39,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   async function fetchUserProfile(userId) {
+    setProfileError(null);
     try {
       const { data, error } = await supabase
         .from('users')
@@ -47,12 +49,15 @@ export function AuthProvider({ children }) {
 
       if (error) {
         console.error('Failed to fetch user profile:', error);
+        setProfileError(error.message);
+        setUserProfile(null);
         return;
       }
 
       setUserProfile(data);
     } catch (err) {
       console.error('Error fetching user profile:', err);
+      setProfileError(err.message);
     }
   }
 
@@ -61,11 +66,13 @@ export function AuthProvider({ children }) {
     session,
     loading,
     userProfile,
+    profileError,
     logout: async () => {
       await logout();
       setUser(null);
       setSession(null);
       setUserProfile(null);
+      setProfileError(null);
     },
     isAuthenticated: !!session,
   };

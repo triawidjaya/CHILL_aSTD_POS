@@ -18,75 +18,23 @@ export async function authenticateWithPin(pin) {
 }
 
 // Email/Password Registration (for first outlet user)
+// Email/Password Registration (for first outlet user)
 export async function registerOutlet(email, password, outletName) {
-  // 1. Create Supabase auth user
-  const { data: authData, error: authError } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
+    options: {
+      data: {
+        business_name: outletName // This is picked up by the handle_new_user trigger
+      }
+    }
   });
 
-  if (authError) {
-    throw new Error(`Auth error: ${authError.message}`);
+  if (error) {
+    throw new Error(`Registration failed: ${error.message}`);
   }
 
-  const userId = authData.user.id;
-
-  // 2. Create outlet
-  const { data: outletData, error: outletError } = await supabase
-    .from('outlets')
-    .insert({
-      name: outletName,
-      created_at: new Date().toISOString(),
-    })
-    .select('id')
-    .single();
-
-  if (outletError) {
-    throw new Error(`Failed to create outlet: ${outletError.message}`);
-  }
-
-  const outletId = outletData.id;
-
-  // 3. Create user profile (Manager role)
-  const { error: userError } = await supabase
-    .from('users')
-    .insert({
-      id: userId,
-      outlet_id: outletId,
-      email,
-      role: 'Manager',
-      status: 'Active',
-      pin: '0000', // Default PIN
-      created_at: new Date().toISOString(),
-    });
-
-  if (userError) {
-    throw new Error(`Failed to create user: ${userError.message}`);
-  }
-
-  // 4. Create default categories
-  const defaultCategories = [
-    { name: 'Accommodation', type: 'income' },
-    { name: 'F&B Sales', type: 'income' },
-    { name: 'Supplies', type: 'expense' },
-    { name: 'Maintenance', type: 'expense' },
-  ];
-
-  const categories = defaultCategories.map(cat => ({
-    outlet_id: outletId,
-    ...cat,
-    created_at: new Date().toISOString(),
-  }));
-
-  const { error: catError } = await supabase
-    .from('categories')
-    .insert(categories);
-
-  if (catError) {
-    console.warn('Failed to create default categories:', catError);
-  }
-
-  return { userId, outletId };
+  return data;
 }
 
 // Email/Password Login
