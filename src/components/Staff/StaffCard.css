@@ -1,0 +1,55 @@
+.staff-card {
+  cursor: default;
+}
+
+.staff-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.staff-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.staff-badges {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.staff-details {
+  margin-bottom: 1rem;
+}
+
+.staff-details h4 {
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.staff-email,
+.staff-pin {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin: 0.25rem 0;
+  word-break: break-all;
+}
+
+.staff-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.staff-actions button {
+  flex: 1;
+}

@@ -1,0 +1,130 @@
+.top-nav {
+  height: 80px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 50;
+}
+
+.nav-left h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.date-badge {
+  padding: 0.5rem 1rem;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary-hover);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  min-width: 120px;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  min-width: 200px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--text-main);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.dropdown-item:hover:not(.disabled) {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--primary);
+}
+
+.dropdown-item.disabled {
+  cursor: default;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.dropdown-item.danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .top-nav {
+    padding: 0 1rem;
+    height: 70px;
+  }
+
+  .nav-left h1 {
+    font-size: 1.25rem;
+  }
+
+  .user-info {
+    display: none;
+  }
+
+  .date-badge {
+    display: none;
+  }
+}

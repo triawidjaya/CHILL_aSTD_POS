@@ -1,0 +1,45 @@
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.table tbody tr:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.table tbody tr.clickable {
+  cursor: pointer;
+}
+
+.table-loading,
+.table-empty {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+}

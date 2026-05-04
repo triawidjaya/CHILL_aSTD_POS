@@ -1,0 +1,112 @@
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background: #1e1b4b; /* Deep Indigo */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+
+.sidebar-logo-icon {
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  padding: 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-header span {
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-menu {
+  flex: 1;
+  padding: 1.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+}
+
+.sidebar-item.active {
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+}
+
+.sidebar-toggle-footer {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.sidebar-toggle-footer:hover {
+  color: white;
+}
+
+.sidebar-footer {
+  padding: 1.5rem 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-outline.btn-block {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.btn-outline.btn-block:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}

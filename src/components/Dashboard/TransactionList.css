@@ -1,0 +1,86 @@
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.transaction-item:hover {
+  background: rgba(99, 102, 241, 0.05);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.txn-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.txn-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.txn-icon[data-type="income"] {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.txn-icon[data-type="expense"] {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+.txn-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.txn-description {
+  color: var(--text-main);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.txn-time {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.txn-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.txn-amount {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.txn-amount.income {
+  color: var(--success);
+}
+
+.txn-amount.expense {
+  color: var(--danger);
+}
