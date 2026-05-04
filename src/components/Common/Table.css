@@ -1,36 +1,45 @@
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
+  border-radius: var(--radius-md);
+  background: white;
 }
 
 .table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .table thead {
-  background: rgba(255, 255, 255, 0.02);
-  border-bottom: 2px solid var(--border-color);
+  background: var(--bg-sidebar);
 }
 
 .table th {
-  padding: 1rem;
+  padding: 1.125rem 1rem;
   text-align: left;
-  font-weight: 600;
-  color: var(--text-main);
-  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  border-bottom: 2px solid var(--border-subtle);
 }
 
 .table td {
   padding: 1rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-subtle);
   color: var(--text-main);
+  font-size: 0.9375rem;
+  transition: background 0.2s ease;
 }
 
-.table tbody tr:hover {
-  background: rgba(99, 102, 241, 0.05);
+.table tbody tr:hover td {
+  background: var(--bg-sidebar);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .table tbody tr.clickable {
@@ -39,7 +48,13 @@
 
 .table-loading,
 .table-empty {
-  padding: 2rem;
+  padding: 3rem 1.5rem;
   text-align: center;
   color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Status specific row indicators if needed */
+.table tr.status-danger td {
+  border-left: 3px solid #ef4444;
 }

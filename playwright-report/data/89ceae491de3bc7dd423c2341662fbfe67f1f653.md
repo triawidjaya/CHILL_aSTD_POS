@@ -29,7 +29,7 @@ waiting for event "dialog"
   - generic [ref=e5]:
     - heading "CHILL aSTD POS" [level=1] [ref=e6]
     - paragraph [ref=e7]: Point of Sale System
-  - generic [ref=e8]: "Auth error: Failed to fetch"
+  - generic [ref=e8]: "Registration failed: Failed to fetch"
   - generic [ref=e9]:
     - generic [ref=e10]:
       - generic [ref=e11]: Email
