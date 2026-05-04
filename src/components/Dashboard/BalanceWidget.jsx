@@ -14,25 +14,27 @@ export default function BalanceWidget({ balance, loading }) {
 
   return (
     <div className="balance-grid">
-      <div className="balance-card total">
-        <label>Net Balance</label>
-        <h2 className={balance.total >= 0 ? 'text-success' : 'text-danger'}>
-          {formatCurrency(balance.total)}
-        </h2>
+      <div className="balance-item cash">
+        <div className="balance-icon">💵</div>
+        <div className="balance-info">
+          <span className="balance-label">Cash Balance</span>
+          <span className="balance-amount">{formatCurrency(balance.cash)}</span>
+        </div>
       </div>
       
-      <div className="balance-subgrid">
-        <div className="balance-card">
-          <label>Cash</label>
-          <span className="amount">{formatCurrency(balance.cash)}</span>
+      <div className="balance-item card">
+        <div className="balance-icon">💳</div>
+        <div className="balance-info">
+          <span className="balance-label">Card Balance</span>
+          <span className="balance-amount">{formatCurrency(balance.card)}</span>
         </div>
-        <div className="balance-card">
-          <label>Card</label>
-          <span className="amount">{formatCurrency(balance.card)}</span>
-        </div>
-        <div className="balance-card">
-          <label>Other</label>
-          <span className="amount">{formatCurrency(balance.other)}</span>
+      </div>
+      
+      <div className="balance-item other">
+        <div className="balance-icon">🪙</div>
+        <div className="balance-info">
+          <span className="balance-label">Other Balance</span>
+          <span className="balance-amount">{formatCurrency(balance.other)}</span>
         </div>
       </div>
     </div>

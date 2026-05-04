@@ -8,30 +8,23 @@
   position: relative;
 }
 
-/* Glass Variant */
-.card.glass {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--border-glass);
-}
-
 .card:hover {
-  box-shadow: var(--shadow-premium);
-  transform: translateY(-4px);
-  border-color: var(--primary-glow);
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+  transform: translateY(-2px);
 }
 
 .card-header {
-  padding: 1.5rem;
+  padding: 1.25rem 1.5rem;
   border-bottom: 1px solid var(--border-subtle);
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
+  background: var(--grad-dark);
 }
 
-.card-header h2, .card-header h3 {
+.card-header h3 {
+  font-size: 1rem;
   font-weight: 700;
   color: var(--text-main);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 .card-body {
@@ -39,9 +32,9 @@
 }
 
 .card-footer {
-  padding: 1.25rem 1.5rem;
+  padding: 1rem 1.5rem;
   border-top: 1px solid var(--border-subtle);
-  background: rgba(0, 0, 0, 0.01);
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
   gap: 1rem;
   justify-content: flex-end;

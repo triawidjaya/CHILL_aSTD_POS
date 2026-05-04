@@ -4,73 +4,56 @@
 
 .balance-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
 }
 
 .balance-item {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.25rem;
   padding: 1.5rem;
-  background: white;
-  border-radius: var(--radius-lg);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
 }
 
-.balance-item:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-premium);
+.balance-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.03);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
-.balance-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--border-subtle);
-}
+.balance-item.cash .balance-icon { color: #818cf8; background: rgba(129, 140, 248, 0.1); }
+.balance-item.card .balance-icon { color: #2dd4bf; background: rgba(45, 212, 191, 0.1); }
+.balance-item.other .balance-icon { color: #f472b6; background: rgba(244, 114, 182, 0.1); }
 
-.balance-item.total::before { background: var(--grad-primary); }
-.balance-item.income::before { background: #10b981; }
-.balance-item.expense::before { background: #ef4444; }
+.balance-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
 
 .balance-label {
   font-size: 0.75rem;
   color: var(--text-secondary);
   text-transform: uppercase;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 }
 
 .balance-amount {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: var(--text-main);
-  letter-spacing: -0.03em;
-}
-
-.balance-amount.positive {
-  color: #059669;
-}
-
-.balance-amount.negative {
-  color: #dc2626;
-}
-
-/* Add a subtle icon background */
-.balance-item::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  right: -10px;
-  font-size: 4rem;
-  opacity: 0.03;
-  font-weight: 900;
+  letter-spacing: -0.02em;
 }

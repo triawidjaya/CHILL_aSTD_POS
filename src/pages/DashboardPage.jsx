@@ -70,7 +70,13 @@ export default function DashboardPage() {
             disabled={!activeShift} 
             onClick={() => setIsTrxModalOpen(true)}
           >
-            + New Transaction
+            <span className="btn-icon">+</span> New Transaction
+          </button>
+          <button className="btn btn-success">
+            <span className="btn-icon">📥</span> Export Excel
+          </button>
+          <button className="btn btn-outline-danger">
+            <span className="btn-icon">↪️</span> Close Shift / Start New
           </button>
         </div>
       </div>

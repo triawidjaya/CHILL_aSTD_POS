@@ -1,51 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
 :root {
-  /* Color Palette (HSL for precision) */
+  /* Color Palette (Deep Dark Mode) */
   --p-h: 243;
   --p-s: 75%;
   --p-l: 59%;
   
   --primary: hsl(var(--p-h), var(--p-s), var(--p-l));
   --primary-hover: hsl(var(--p-h), var(--p-s), 50%);
-  --primary-glow: hsla(var(--p-h), var(--p-s), var(--p-l), 0.15);
+  --primary-glow: hsla(var(--p-h), var(--p-s), var(--p-l), 0.2);
   
-  --s-h: 325;
-  --s-s: 83%;
-  --s-l: 60%;
-  --secondary: hsl(var(--s-h), var(--s-s), var(--s-l));
-  --secondary-glow: hsla(var(--s-h), var(--s-s), var(--s-l), 0.15);
+  --secondary: #ec4899;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
 
-  --accent-teal: #2dd4bf;
-  --accent-coral: #fb7185;
-
-  /* Neutrals */
-  --bg-main: #fcfcfd;
-  --bg-sidebar: #f8fafc;
-  --bg-card: #ffffff;
+  /* Neutrals (Dark) */
+  --bg-main: #0a0a0c;
+  --bg-sidebar: #0f0f12;
+  --bg-card: #16161a;
   
-  --text-main: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
+  --text-main: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
   
-  --border-subtle: rgba(226, 232, 240, 0.8);
-  --border-glass: rgba(255, 255, 255, 0.4);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-glass: rgba(255, 255, 255, 0.03);
 
   /* Elevation & Effects */
-  --shadow-soft: 0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-premium: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-blur: blur(12px);
+  --shadow-soft: 0 4px 20px -5px rgba(0, 0, 0, 0.5);
+  --shadow-premium: 0 20px 40px -12px rgba(0, 0, 0, 0.7);
+  --glass-bg: rgba(15, 15, 18, 0.8);
+  --glass-blur: blur(20px);
 
   /* Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 20px;
+  --radius-lg: 16px;
   --radius-full: 9999px;
 
   /* Gradients */
-  --grad-primary: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-  --grad-surface: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --grad-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --grad-dark: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
 }
 
 * {
@@ -84,35 +80,35 @@ button {
   cursor: pointer;
   border: none;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 button:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 button:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 .error-message {
-  background-color: #fff1f2;
-  color: #be123c;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #fb7185;
   padding: 12px 16px;
   border-radius: var(--radius-md);
-  border: 1px solid #ffe4e6;
+  border: 1px solid rgba(239, 68, 68, 0.2);
   margin-bottom: 1rem;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
 
 .success-message {
-  background-color: #f0fdf4;
-  color: #15803d;
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #34d399;
   padding: 12px 16px;
   border-radius: var(--radius-md);
-  border: 1px solid #dcfce7;
+  border: 1px solid rgba(16, 185, 129, 0.2);
   margin-bottom: 1rem;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
