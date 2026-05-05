@@ -77,7 +77,7 @@ waiting for event "dialog"
   26 | 
   27 |     // Await the dialog to ensure seeding is totally finished
   28 |     const dialog = await dialogPromise;
-  29 |     expect(dialog.message()).toContain('Test user seeded');
+  29 |     expect(dialog.message()).toContain('Test user created');
   30 |     await dialog.accept();
   31 | 
   32 |     // 3. Login
@@ -92,7 +92,7 @@ waiting for event "dialog"
   41 |     const openShiftCard = page.locator('.start-shift-card');
   42 |     if (await openShiftCard.isVisible()) {
   43 |       await page.fill('input[type="number"]', '500000');
-  44 |       await page.click('button:has-text("Open New Shift")');
+  44 |       await page.click('button:has-text("Open Shift")');
   45 |     }
   46 | 
   47 |     // 6. Add Transaction

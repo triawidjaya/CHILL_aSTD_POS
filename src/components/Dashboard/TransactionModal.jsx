@@ -117,6 +117,7 @@ export default function TransactionModal({ isOpen, onClose, shiftId }) {
               onBlur={() => setStaffError(validators.staff(staffId))}
               className={`form-input ${staffError ? 'error' : ''}`}
               disabled={usersLoading}
+              required
             >
               <option value="">Select Staff Member</option>
               {users.map(u => (

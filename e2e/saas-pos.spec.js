@@ -26,7 +26,7 @@ test.describe('CHILL aSTD POS SaaS E2E Flow', () => {
 
     // Await the dialog to ensure seeding is totally finished
     const dialog = await dialogPromise;
-    expect(dialog.message()).toContain('Test user seeded');
+    expect(dialog.message()).toContain('Test user created');
     await dialog.accept();
 
     // 3. Login
@@ -41,7 +41,7 @@ test.describe('CHILL aSTD POS SaaS E2E Flow', () => {
     const openShiftCard = page.locator('.start-shift-card');
     if (await openShiftCard.isVisible()) {
       await page.fill('input[type="number"]', '500000');
-      await page.click('button:has-text("Open New Shift")');
+      await page.click('button:has-text("Open Shift")');
     }
 
     // 6. Add Transaction

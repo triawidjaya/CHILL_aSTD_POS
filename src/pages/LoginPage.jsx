@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginWithEmail, registerOutlet, authenticateWithPin } from '../services/auth';
 import { seedTestData } from '../utils/seedTestData';
-import { validators } from '../utils/validation';
+import { validators, validateForm, hasErrors } from '../utils/validation';
 import CheckInModal from '../components/Auth/CheckInModal';
 import { useAuth } from '../context/AuthContext';
 
@@ -18,6 +18,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   // Register mode
   const [businessName, setBusinessName] = useState('');
@@ -127,6 +128,7 @@ export default function LoginPage() {
     setMode(newMode);
     setError(null);
     setEmailError('');
+    setPasswordError('');
     setBusinessNameError('');
     setRegisterPasswordError('');
     setRegisterPasswordConfirmError('');
@@ -170,6 +172,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
+                  setPasswordError('');
                 }}
                 placeholder="••••••••"
               />
