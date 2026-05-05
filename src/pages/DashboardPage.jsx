@@ -12,7 +12,7 @@ import { useTransactions, useShiftBalance } from '../hooks/useTransactions';
 import '../styles/dashboard.css';
 
 export default function DashboardPage() {
-  const { userProfile, profileError, loading } = useAuth();
+  const { userProfile, profileError, loading, checkedInStaff } = useAuth();
   const { outletId } = useOutlet();
   const { activeShift, openShift, closeCurrentShift, loading: shiftLoading } = useShifts(outletId);
   const { transactions, loading: txnLoading } = useTransactions(outletId, activeShift?.id);
@@ -20,18 +20,24 @@ export default function DashboardPage() {
   
   const [isTrxModalOpen, setIsTrxModalOpen] = useState(false);
 
+  // Role permissions
+  const isManager = checkedInStaff?.role === 'Manager';
+  const isAdmin = checkedInStaff?.role === 'Admin';
+  const isStaff = checkedInStaff?.role === 'Staff';
+  const canPerformTransactions = isAdmin || isStaff;
+
   if (loading) {
     return <MainLayout><div>Synchronizing session...</div></MainLayout>;
   }
 
-  if (profileError || !userProfile) {
+  if (profileError || !userProfile || !checkedInStaff) {
     return (
       <MainLayout>
         <div className="error-container" style={{ padding: '2rem', textAlign: 'center' }}>
-          <h2>Profile Sync Error</h2>
-          <p>We couldn't load your user profile. {profileError || 'Please try logging in again.'}</p>
-          <button className="btn-primary" onClick={() => window.location.reload()} style={{ marginTop: '1rem' }}>
-            Retry Sync
+          <h2>Session Required</h2>
+          <p>Please log in and check-in with your PIN to access the dashboard.</p>
+          <button className="btn btn-primary" onClick={() => window.location.href = '/login'} style={{ marginTop: '1rem' }}>
+            Go to Login
           </button>
         </div>
       </MainLayout>
@@ -39,6 +45,7 @@ export default function DashboardPage() {
   }
 
   const handleOpenShift = async (amount) => {
+    if (!canPerformTransactions) return;
     try {
       await openShift(amount);
     } catch (err) {
@@ -48,6 +55,7 @@ export default function DashboardPage() {
   };
 
   const handleCloseShift = async () => {
+    if (!canPerformTransactions) return;
     if (!window.confirm('Are you sure you want to close this shift?')) return;
     try {
       await closeCurrentShift();
@@ -61,23 +69,29 @@ export default function DashboardPage() {
     <MainLayout title="Ongoing Shift Dashboard">
       <div className="dashboard-header-section">
         <div className="welcome-text">
-          <h1>Welcome back, {userProfile?.email?.split('@')[0]}</h1>
-          <p>Here's what's happening at your outlet today.</p>
+          <h1>Welcome, {checkedInStaff?.name || userProfile?.email?.split('@')[0]}</h1>
+          <p>Role: <span className="badge badge-primary">{checkedInStaff?.role}</span></p>
         </div>
         <div className="dashboard-header-actions">
-          <button 
-            className="btn btn-primary" 
-            disabled={!activeShift} 
-            onClick={() => setIsTrxModalOpen(true)}
-          >
-            <span className="btn-icon">+</span> New Transaction
-          </button>
+          {canPerformTransactions && (
+            <button 
+              className="btn btn-primary" 
+              disabled={!activeShift} 
+              onClick={() => setIsTrxModalOpen(true)}
+            >
+              <span className="btn-icon">+</span> New Transaction
+            </button>
+          )}
+          
           <button className="btn btn-success">
             <span className="btn-icon">📥</span> Export Excel
           </button>
-          <button className="btn btn-outline-danger">
-            <span className="btn-icon">↪️</span> Close Shift / Start New
-          </button>
+
+          {canPerformTransactions && (
+            <button className="btn btn-outline-danger" onClick={handleCloseShift}>
+              <span className="btn-icon">↪️</span> Close Shift / Start New
+            </button>
+          )}
         </div>
       </div>
 
@@ -88,6 +102,7 @@ export default function DashboardPage() {
             onOpenShift={handleOpenShift}
             onCloseShift={handleCloseShift}
             loading={shiftLoading}
+            canOpenShift={canPerformTransactions}
           />
 
           <BalanceWidget

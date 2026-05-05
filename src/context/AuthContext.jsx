@@ -38,6 +38,11 @@ export function AuthProvider({ children }) {
     };
   }, []);
 
+  const [checkedInStaff, setCheckedInStaff] = useState(() => {
+    const saved = localStorage.getItem('checkedInStaff');
+    return saved ? JSON.parse(saved) : null;
+  });
+
   async function fetchUserProfile(userId) {
     setProfileError(null);
     try {
@@ -61,18 +66,32 @@ export function AuthProvider({ children }) {
     }
   }
 
+  const checkIn = (staffData) => {
+    setCheckedInStaff(staffData);
+    localStorage.setItem('checkedInStaff', JSON.stringify(staffData));
+  };
+
+  const checkOut = () => {
+    setCheckedInStaff(null);
+    localStorage.removeItem('checkedInStaff');
+  };
+
   const value = {
     user,
     session,
     loading,
     userProfile,
     profileError,
+    checkedInStaff,
+    checkIn,
+    checkOut,
     logout: async () => {
       await logout();
       setUser(null);
       setSession(null);
       setUserProfile(null);
       setProfileError(null);
+      checkOut();
     },
     isAuthenticated: !!session,
   };

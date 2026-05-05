@@ -3,11 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { loginWithEmail, registerOutlet, authenticateWithPin } from '../services/auth';
 import { seedTestData } from '../utils/seedTestData';
 import { validators, validateForm, hasErrors } from '../utils/validation';
-import '../styles/login.css';
+import CheckInModal from '../components/Auth/CheckInModal';
+import { useAuth } from '../context/AuthContext';
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { userProfile, checkIn } = useAuth();
   const [mode, setMode] = useState('login'); // 'login', 'register', 'pin'
+  const [showCheckIn, setShowCheckIn] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -41,7 +44,7 @@ export default function LoginPage() {
     setLoading(true);
     try {
       await loginWithEmail(email, password);
-      navigate('/');
+      setShowCheckIn(true);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -323,7 +326,14 @@ export default function LoginPage() {
             </div>
           </form>
         )}
-      </div>
+      <CheckInModal 
+        isOpen={showCheckIn} 
+        userProfile={userProfile} 
+        onCheckIn={(staffData) => {
+          checkIn(staffData);
+          navigate('/');
+        }}
+      />
     </div>
   );
 }

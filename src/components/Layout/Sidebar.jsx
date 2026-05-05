@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import './Sidebar.css';
 
 export default function Sidebar() {
-  const { userProfile, logout } = useAuth();
+  const { checkedInStaff, logout } = useAuth();
   const location = useLocation();
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -25,7 +25,7 @@ export default function Sidebar() {
 
   const isActive = (path) => location.pathname === path;
 
-  const canViewItem = (roles) => userProfile && roles.includes(userProfile.role);
+  const canViewItem = (roles) => checkedInStaff && roles.includes(checkedInStaff.role);
 
   return (
     <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>

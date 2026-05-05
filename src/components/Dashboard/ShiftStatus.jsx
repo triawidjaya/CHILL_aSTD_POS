@@ -1,36 +1,39 @@
 import React, { useState } from 'react';
+import StartShiftModal from './StartShiftModal';
 import './DashboardComponents.css';
 
-export default function ShiftStatus({ activeShift, onOpenShift, onCloseShift, loading }) {
-  const [initialCash, setInitialCash] = useState(0);
+export default function ShiftStatus({ activeShift, onOpenShift, onCloseShift, loading, canOpenShift }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (loading) return <div className="card loading-card">Loading Shift Status...</div>;
 
   if (!activeShift) {
     return (
-      <div className="card start-shift-card animate-fade-in">
-        <div className="card-header">
-          <h3>No Active Shift</h3>
-        </div>
-        <div className="card-body shift-empty-content">
-          <p className="shift-description">Open a new shift to start recording transactions and tracking your cash flow.</p>
-          <div className="start-shift-form">
-            <div className="form-group">
-              <label className="form-label">Initial Cash Float</label>
-              <input 
-                type="number" 
-                className="form-input"
-                value={initialCash} 
-                onChange={(e) => setInitialCash(e.target.value)}
-                placeholder="Enter amount (IDR)"
-              />
-            </div>
-            <button className="btn btn-success btn-full" onClick={() => onOpenShift(initialCash)}>
-              Open New Shift
-            </button>
+      <>
+        <div className="card start-shift-card animate-fade-in">
+          <div className="card-header">
+            <h3>No Active Shift</h3>
+          </div>
+          <div className="card-body shift-empty-content">
+            <p className="shift-description">
+              {canOpenShift 
+                ? 'There is no active shift currently running. Open a new one to begin.' 
+                : 'There is no active shift currently running. Only Staff or Admin can open a new shift.'}
+            </p>
+            {canOpenShift && (
+              <button className="btn btn-primary" onClick={() => setIsModalOpen(true)}>
+                🚀 Start New Shift
+              </button>
+            )}
           </div>
         </div>
-      </div>
+        
+        <StartShiftModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+          onConfirm={onOpenShift}
+        />
+      </>
     );
   }
 
