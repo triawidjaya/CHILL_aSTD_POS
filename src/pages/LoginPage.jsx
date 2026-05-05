@@ -175,7 +175,7 @@ export default function LoginPage() {
               />
             </div>
 
-            <button type="submit" className="btn-primary" disabled={loading}>
+            <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
               {loading ? 'Logging in...' : 'Login'}
             </button>
 
@@ -191,7 +191,6 @@ export default function LoginPage() {
                 type="button"
                 className="link-button seed-btn"
                 onClick={handleSeed}
-                style={{ opacity: 0.5, fontSize: '0.75rem', marginTop: '1rem' }}
               >
                 (Dev) Seed Test User
               </button>
@@ -272,7 +271,7 @@ export default function LoginPage() {
               {registerPasswordConfirmError && <span className="form-error">{registerPasswordConfirmError}</span>}
             </div>
 
-            <button type="submit" className="btn-primary" disabled={loading}>
+            <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
               {loading ? 'Creating Outlet...' : 'Create Outlet'}
             </button>
 
@@ -309,7 +308,7 @@ export default function LoginPage() {
               {pinError && <span className="form-error">{pinError}</span>}
             </div>
 
-            <button type="submit" className="btn-primary" disabled={loading}>
+            <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
               {loading ? 'Authenticating...' : 'Login with PIN'}
             </button>
 

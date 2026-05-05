@@ -320,10 +320,11 @@
 }
 
 .modal-container {
-  background: white;
+  background: var(--bg-card);
   width: 100%;
   max-width: 540px;
   border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
   overflow: hidden;
   box-shadow: var(--shadow-premium);
   animation: modalScale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -393,11 +394,13 @@
   padding: 0.75rem;
   border-radius: var(--radius-md);
   border: 1.5px solid var(--border-subtle);
-  background: white;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-secondary);
   font-size: 0.8125rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  transition: all 0.2s;
 }
 
 .method-grid button.active {

@@ -1,91 +1,97 @@
-.shift-status-card {
-  width: 100%;
-}
-
-.shift-empty {
-  text-align: center;
-  padding: 3rem 1.5rem;
+.shift-empty-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  padding: 2rem !important;
 }
 
-.shift-empty h3 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text-main);
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.03em;
-}
-
-.shift-empty p {
+.shift-description {
   color: var(--text-secondary);
+  font-size: 0.875rem;
   margin-bottom: 2rem;
-  max-width: 400px;
-  font-weight: 500;
+  max-width: 320px;
+  line-height: 1.5;
 }
 
-.shift-header {
+.start-shift-form {
+  width: 100%;
+  max-width: 300px;
+}
+
+.shift-header-flex {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 2rem;
+  align-items: center;
+  gap: 1rem;
 }
 
-.shift-title-group {
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.status-indicator h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.dot.pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--success);
+  position: relative;
+}
+
+.dot.pulse::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.shift-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.shift-stat-item {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
 
-.shift-header h3 {
-  font-size: 1.25rem;
+.stat-label {
+  font-size: 0.6875rem;
   font-weight: 800;
-  color: var(--text-main);
-  letter-spacing: -0.02em;
-}
-
-.shift-time {
   color: var(--text-muted);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.shift-details {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-bottom: 1rem;
-}
-
-.detail-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.detail-label {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
   text-transform: uppercase;
-  font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 }
 
-.detail-value {
-  font-size: 1.5rem;
+.stat-value {
+  font-size: 1.125rem;
   font-weight: 800;
   color: var(--text-main);
   letter-spacing: -0.02em;
 }
 
-.shift-footer {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border-subtle);
-  display: flex;
-  justify-content: flex-end;
+.stat-sub {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
 }

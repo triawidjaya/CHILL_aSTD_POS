@@ -110,42 +110,42 @@ export default function TransactionModal({ isOpen, onClose, shiftId }) {
           </div>
 
           <div className="form-group">
-            <label>Staff on Duty *</label>
+            <label className="form-label">Staff on Duty *</label>
             <select
               value={staffId}
               onChange={e => { setStaffId(e.target.value); setStaffError(''); }}
               onBlur={() => setStaffError(validators.staff(staffId))}
-              className={staffError ? 'input-error' : ''}
+              className={`form-input ${staffError ? 'error' : ''}`}
               disabled={usersLoading}
             >
-              <option value="">Select Staff</option>
+              <option value="">Select Staff Member</option>
               {users.map(u => (
                 <option key={u.id} value={u.id}>{u.name}</option>
               ))}
             </select>
-            {staffError && <span className="form-error">{staffError}</span>}
+            {staffError && <span className="form-error">⚠️ {staffError}</span>}
           </div>
 
           <div className="form-group">
-            <label>Amount (IDR) *</label>
+            <label className="form-label">Amount (IDR) *</label>
             <input
               type="number"
               value={amount}
               onChange={e => { setAmount(e.target.value); setAmountError(''); }}
               onBlur={() => setAmountError(validators.amount(amount))}
               placeholder="0"
-              className={amountError ? 'input-error' : ''}
+              className={`form-input ${amountError ? 'error' : ''}`}
             />
-            {amountError && <span className="form-error">{amountError}</span>}
+            {amountError && <span className="form-error">⚠️ {amountError}</span>}
           </div>
 
           <div className="form-group">
-            <label>Category *</label>
+            <label className="form-label">Category *</label>
             <select
               value={categoryId}
               onChange={e => { setCategoryId(e.target.value); setCategoryError(''); }}
               onBlur={() => setCategoryError(validators.category(categoryId))}
-              className={categoryError ? 'input-error' : ''}
+              className={`form-input ${categoryError ? 'error' : ''}`}
               disabled={catsLoading}
             >
               <option value="">Select Category</option>
@@ -153,11 +153,11 @@ export default function TransactionModal({ isOpen, onClose, shiftId }) {
                 <option key={cat.id} value={cat.id}>{cat.name}</option>
               ))}
             </select>
-            {categoryError && <span className="form-error">{categoryError}</span>}
+            {categoryError && <span className="form-error">⚠️ {categoryError}</span>}
           </div>
 
           <div className="form-group">
-            <label>Payment Method</label>
+            <label className="form-label">Payment Method</label>
             <div className="method-grid">
               {['cash', 'card', 'other'].map(m => (
                 <button
@@ -173,18 +173,20 @@ export default function TransactionModal({ isOpen, onClose, shiftId }) {
           </div>
 
           <div className="form-group">
-            <label>Description (Optional)</label>
+            <label className="form-label">Description (Optional)</label>
             <textarea
+              className="form-input"
               value={description}
               onChange={e => setDescription(e.target.value)}
-              placeholder="Notes..."
+              placeholder="Add some notes about this transaction..."
+              rows={3}
             />
           </div>
 
           <div className="modal-footer">
-            <button type="button" className="btn-outline" onClick={onClose} disabled={loading}>Cancel</button>
-            <button type="submit" className="btn-primary" disabled={loading}>
-              {loading ? 'Saving...' : 'Save Transaction'}
+            <button type="button" className="btn btn-outline" onClick={onClose} disabled={loading}>Cancel</button>
+            <button type="submit" className="btn btn-primary" disabled={loading}>
+              {loading ? 'Processing...' : 'Save Transaction'}
             </button>
           </div>
         </form>
