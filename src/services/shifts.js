@@ -61,7 +61,7 @@ export async function openShift(outletId, initialCash, userId) {
   return shift;
 }
 
-export async function closeShift(shiftId, finalBalance = null) {
+export async function closeShift(shiftId) {
   const { data, error } = await supabase
     .from('shifts')
     .update({

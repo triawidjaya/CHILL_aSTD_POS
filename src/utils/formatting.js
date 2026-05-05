@@ -13,7 +13,7 @@ export function formatDate(date, dateFormat = 'dd MMM yyyy HH:mm') {
   return format(new Date(date), dateFormat);
 }
 
-export function generateCSV(transactions, shiftData = {}) {
+export function generateCSV(transactions) {
   const data = transactions.map(txn => ({
     Tanggal: formatDate(txn.created_at, 'dd/MM/yyyy HH:mm'),
     Tipe: txn.type === 'income' ? 'Masuk' : 'Keluar',

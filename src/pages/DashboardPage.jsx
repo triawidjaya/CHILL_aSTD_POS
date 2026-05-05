@@ -21,7 +21,6 @@ export default function DashboardPage() {
   const [isTrxModalOpen, setIsTrxModalOpen] = useState(false);
 
   // Role permissions
-  const isManager = checkedInStaff?.role === 'Manager';
   const isAdmin = checkedInStaff?.role === 'Admin';
   const isStaff = checkedInStaff?.role === 'Staff';
   const canPerformTransactions = isAdmin || isStaff;

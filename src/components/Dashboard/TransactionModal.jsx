@@ -10,7 +10,7 @@ import './DashboardComponents.css';
 
 export default function TransactionModal({ isOpen, onClose, shiftId }) {
   const { outletId } = useOutlet();
-  const { userProfile } = useAuth();
+  useAuth(); // Keeping hook call if it provides context, otherwise can be removed
   const { categories, loading: catsLoading } = useCategories(outletId);
   const { users, loading: usersLoading } = useUsers(outletId);
   const { addTransaction } = useTransactions(outletId, shiftId);
@@ -48,7 +48,7 @@ export default function TransactionModal({ isOpen, onClose, shiftId }) {
 
     setLoading(true);
     try {
-      const trx = await addTransaction({
+      await addTransaction({
         shift_id: shiftId,
         category_id: categoryId,
         amount: parseFloat(amount),
