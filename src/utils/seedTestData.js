@@ -7,7 +7,7 @@ import { registerOutlet } from '../services/auth';
  * IMPORTANT: Use only in development/testing environments.
  */
 export async function seedTestData() {
-  const testEmail = 'manager@test.com';
+  const testEmail = 'manager@pipespos.com';
   const testPassword = 'Password123!';
   const testOutletName = 'Test Hospitality POS';
 

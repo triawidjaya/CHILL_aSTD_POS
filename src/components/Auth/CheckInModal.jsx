@@ -48,6 +48,12 @@ export default function CheckInModal({ isOpen, userProfile, onCheckIn }) {
 
     setLoading(true);
     try {
+      if (!userProfile?.outlet_id) {
+        setError('Outlet profile not found. Please refresh.');
+        setLoading(false);
+        return;
+      }
+
       // Find staff with matching PIN and role (within the same outlet)
       const { data, error: fetchErr } = await supabase
         .from('users')
@@ -55,10 +61,17 @@ export default function CheckInModal({ isOpen, userProfile, onCheckIn }) {
         .eq('outlet_id', userProfile.outlet_id)
         .eq('pin', pin)
         .eq('role', role)
-        .single();
+        .maybeSingle();
 
-      if (fetchErr || !data) {
-        setError('Invalid PIN for selected role');
+      if (fetchErr) {
+        console.error('Check-in error:', fetchErr);
+        setError('Database error. Please try again.');
+        setLoading(false);
+        return;
+      }
+
+      if (!data) {
+        setError(`Invalid PIN for ${role} role.`);
         setLoading(false);
         return;
       }
@@ -117,6 +130,17 @@ export default function CheckInModal({ isOpen, userProfile, onCheckIn }) {
               {loading ? 'Verifying...' : 'Check-In to Dashboard'}
             </button>
           </form>
+
+          <div className="modal-footer" style={{ marginTop: '1.5rem', justifyContent: 'center', borderTop: 'none' }}>
+            <button 
+              type="button" 
+              className="link-button" 
+              onClick={() => onCheckIn(userProfile)}
+              style={{ fontSize: '0.8125rem', opacity: 0.7 }}
+            >
+              Skip: Continue as Account Owner
+            </button>
+          </div>
         </div>
       </div>
     </div>
