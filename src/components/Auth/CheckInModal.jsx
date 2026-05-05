@@ -135,7 +135,7 @@ export default function CheckInModal({ isOpen, userProfile, onCheckIn }) {
             <button 
               type="button" 
               className="link-button" 
-              onClick={() => onCheckIn(userProfile)}
+              onClick={() => onCheckIn({ ...userProfile, role: 'Admin' })}
               style={{ fontSize: '0.8125rem', opacity: 0.7 }}
             >
               Skip: Continue as Account Owner

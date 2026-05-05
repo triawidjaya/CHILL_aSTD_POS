@@ -57,3 +57,22 @@
   color: var(--text-main);
   letter-spacing: -0.02em;
 }
+
+@media (max-width: 640px) {
+  .balance-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .balance-item {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  .balance-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+  }
+  .balance-amount {
+    font-size: 1.25rem;
+  }
+}

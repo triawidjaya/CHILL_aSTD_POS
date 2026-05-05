@@ -51,3 +51,17 @@
   font-weight: 800;
   text-transform: uppercase;
 }
+
+@media (max-width: 640px) {
+  .transaction-table th:nth-child(1),
+  .transaction-table td:nth-child(1),
+  .transaction-table th:nth-child(4),
+  .transaction-table td:nth-child(4) {
+    display: none;
+  }
+  
+  .transaction-table th, .transaction-table td {
+    padding: 1rem 0.75rem;
+    font-size: 0.75rem;
+  }
+}

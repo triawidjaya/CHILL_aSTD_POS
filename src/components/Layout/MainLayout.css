@@ -39,7 +39,8 @@
     margin-left: 0;
   }
   .main-content {
-    padding: 1.5rem;
+    padding: 1rem;
+    padding-bottom: calc(var(--nav-bottom-height, 70px) + 1rem);
   }
 }
 

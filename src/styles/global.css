@@ -42,6 +42,11 @@
   /* Gradients */
   --grad-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   --grad-dark: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+
+  /* Breakpoints */
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
 }
 
 * {

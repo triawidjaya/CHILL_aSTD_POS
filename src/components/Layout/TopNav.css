@@ -86,3 +86,23 @@
   background: rgba(255, 255, 255, 0.1);
   color: var(--text-main);
 }
+
+@media (max-width: 768px) {
+  .top-nav {
+    height: 60px;
+    padding: 0 1rem;
+  }
+  .nav-left h1 {
+    font-size: 1.25rem;
+  }
+  .nav-right {
+    gap: 0.5rem;
+  }
+  .duty-label, .date-badge, .language-picker span {
+    display: none;
+  }
+  .staff-pill {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}

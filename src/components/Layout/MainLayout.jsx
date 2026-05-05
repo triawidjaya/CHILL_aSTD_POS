@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 import TopNav from './TopNav';
+import BottomNav from './BottomNav';
 import './MainLayout.css';
 
 export default function MainLayout({ children, title = 'Dashboard' }) {
@@ -13,6 +14,7 @@ export default function MainLayout({ children, title = 'Dashboard' }) {
           {children}
         </main>
       </div>
+      <BottomNav />
     </div>
   );
 }
