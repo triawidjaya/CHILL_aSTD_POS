@@ -334,6 +334,7 @@ export default function LoginPage() {
           navigate('/');
         }}
       />
+      </div>
     </div>
   );
 }
